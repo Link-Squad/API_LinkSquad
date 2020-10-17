@@ -1,0 +1,38 @@
+{
+  "name": "LFP-API",
+  "version": "1.0.0",
+  "description": "Api for the LFP app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "seeds": "node ./bin/seeds"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Looking-For-Players/LFP-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Looking-For-Players/LFP-API/issues"
+  },
+  "homepage": "https://github.com/Looking-For-Players/LFP-API#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cloudinary": "^1.23.0",
+    "connect-mongo": "^3.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "http-errors": "^1.8.0",
+    "mongoose": "^5.10.9",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "multer-storage-cloudinary": "^4.0.0",
+    "passport": "^0.4.1"
+  }
+}
