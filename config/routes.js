@@ -10,8 +10,8 @@ router.get("/", (req, res, send) => {
 });
 
 /* USERS */
-router.post('/login', usersController.doLogin);
-router.post('/users', usersController.createUser);
+router.post("/login", usersController.doLogin);
+router.post("/users", usersController.createUser);
 
-/* GAMES */ 
-router.game('/games', )
+/* GAMES */
+router.get("/games", gamesController.getGames);

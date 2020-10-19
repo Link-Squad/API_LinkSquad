@@ -7,7 +7,7 @@ module.exports.getGames = (req, res, next) => {
     .then((results) => {
       console.log("showing results");
       console.log(results);
-      res.tojson(results);
+      res.json(results);
     })
     .catch((err) => err);
 };
