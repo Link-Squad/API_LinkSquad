@@ -58,7 +58,17 @@ const userSchema = new mongoose.Schema({
         }
     }
 }, {
-    timestamps: true
+    timestamps: true,
+    toJSON: {
+      transform: (document, toReturn) => {
+        toReturn.id = document._id;
+        delete toReturn.password;
+        delete toReturn._id;
+        delete toReturn.createdAt;
+        delete toReturn.updatedAt;
+        return toReturn;
+      }
+    }
 });
 
 userSchema.pre('save', function (next) {
