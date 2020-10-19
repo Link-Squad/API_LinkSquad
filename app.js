@@ -1,8 +1,6 @@
+/* IMPORT DEPENDENCIES */
 require('dotenv').config();
 require('./config/db.config');
-
-/* IMPORT DEPENDENCIES */
-
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -13,7 +11,6 @@ const session = require('./config/session.config');
 const cors = require('./config/cors.config');
 
 /* CONFIG EXPRESS */
-
 const app = express();
 //app.use(cors);
 app.use(logger('dev'));
@@ -25,7 +22,7 @@ app.use(logger('dev'));
 
 /* Configure routes */
 const router = require('./config/routes.js');
-//app.use('/', router);
+app.use('/', router);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -44,13 +41,13 @@ app.use(function (error, req, res, next) {
   if (error instanceof mongoose.Error.ValidationError) {
     res.status(400);
 
-    for (field of Object.keys(error.errors)) {
+    for (let field of Object.keys(error.errors)) {
       error.errors[field] = error.errors[field].message;
     }
 
     data.errors = error.errors;
   } else if (error instanceof mongoose.Error.CastError) {
-    error = createError(404, 'Resource not found')
+    error = createError(404, 'Resource not found');
   }
 
   data.message = error.message;
@@ -58,7 +55,6 @@ app.use(function (error, req, res, next) {
 });
 
 /* Listen on provided port */
-console.log(process.env.PORT)
 const port = normalizePort(process.env.PORT);
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
