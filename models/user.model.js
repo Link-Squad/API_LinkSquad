@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema({
         unique: [true, 'Invalid email address'],
         match: [EMAIL_PATTERN, 'Invalid email address']
     },
+    password: {
+        type: String,
+        required: [true, 'Password missing']
+    },
     languages: {
         type: [String],
         required: [true, 'You must specify a language'],
@@ -72,15 +76,18 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-userSchema.pre('save', function (next) {
+ userSchema.pre('save', function (next) {
     if (this.isModified('password')) {
         bcrypt.hash(this.password, 10)
             .then(hash => {
                 this.password = hash;
                 next();
-            });
+            })
+            .catch(next);
+    } else {
+        next();
     }
-});
+}); 
 
 userSchema.methods.checkPassword = function(password) {
     return bcrypt.compare(password, this.password);

@@ -5,9 +5,17 @@ module.exports.doLogin = (req, res, next) => {
 };
 
 module.exports.createUser = (req, res, next) => {
-    const {username, email, languages, img} = req.body;
-    const newUser = {username, email, languages, img};
+    const {username, password, email, languages} = req.body;
+    const newUser = new User({username, password, email, languages});
 
-    User.create(user)
-        .then(res.JSON)
+    newUser.save()
+        .then(u => res.status(201).json(u))
+        .catch(next);
+};
+
+module.exports.updateUser = (req, res, next) => {
+    const {username, password, email, language} = req.body;
+
+    //User.find(data)
+    //then(user => user.updateOne)
 }
