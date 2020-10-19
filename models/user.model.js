@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const helpers = require('../helpers/helpers');
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 const userSchema = new mongoose.Schema({
@@ -31,7 +32,7 @@ const userSchema = new mongoose.Schema({
     status: {
         token: {
             type: String,
-            default: generateRandomToken()
+            default: helpers.generateRandomToken()
         },
         active: {
             type: Boolean,
