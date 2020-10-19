@@ -11,3 +11,4 @@ router.get('/', (req, res, send) => {
 
 /* USERS */
 router.post('/login', usersController.doLogin);
+router.post('/users', usersController.createUser);
