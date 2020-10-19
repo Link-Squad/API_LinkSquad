@@ -10,6 +10,11 @@ router.get("/", (req, res, send) => {
 });
 
 /* USERS */
+<<<<<<< HEAD
 router.post("/login", usersController.doLogin);
 /* GAMES */
 router.get("/games", gamesController.getGames);
+=======
+router.post('/login', usersController.doLogin);
+router.post('/users', usersController.createUser);
+>>>>>>> main
