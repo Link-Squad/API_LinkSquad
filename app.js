@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const passportConfig = require('./config/passport.config');
 const session = require('./config/session.config');
 const cors = require('./config/cors.config');
+const {normalizePort} = require('./helpers/helpers');
 
 /* CONFIG EXPRESS */
 const app = express();
@@ -60,20 +61,3 @@ app.listen(port, () => {
 });
 
 // Helper functions
-
-/* Normalize a port into a number, string, or false. */
-function normalizePort(val) {
-  const port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
-}
