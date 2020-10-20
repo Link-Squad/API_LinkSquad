@@ -12,6 +12,7 @@ router.get("/", (req, res, send) => {
 /* USERS */
 router.post("/login", usersController.doLogin);
 router.post("/users", usersController.createUser);
+router.patch("/users", usersController.updateUser);
 
 /* GAMES */
 router.get("/games", gamesController.getGames);
