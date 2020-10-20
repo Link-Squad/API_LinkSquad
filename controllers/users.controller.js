@@ -10,4 +10,5 @@ module.exports.createUser = (req, res, next) => {
 
     User.create(user)
         .then(res.JSON)
+        //TODO
 }
