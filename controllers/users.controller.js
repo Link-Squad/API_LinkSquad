@@ -15,6 +15,16 @@ module.exports.createUser = (req, res, next) => {
         .catch(next);
 };
 
+module.exports.listUsers = (req, res, next) => {
+    const query = req.query  
+
+    User.find(query)
+        .then(users => {
+            res.json(users);
+        })
+        .catch(next)
+}
+
 module.exports.updateUser = (req, res, next) => {
     const {username, password, email, bio, languages} = req.body;
 
@@ -35,6 +45,14 @@ module.exports.updateUser = (req, res, next) => {
             user.save()
                 .then(u => res.status(200).json(u))
                 .catch(next);
+        })
+        .catch(next);
+};
+
+module.exports.deleteUser = (req, res, next) => {
+    User.findByIdAndDelete()
+        .then(() => {
+            res.send('user deleted')
         })
         .catch(next);
 };
