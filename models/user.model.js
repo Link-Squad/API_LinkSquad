@@ -69,6 +69,7 @@ const userSchema = new mongoose.Schema({
         toReturn.id = document._id;
         delete toReturn.password;
         delete toReturn._id;
+        delete toReturn._v;
         delete toReturn.createdAt;
         delete toReturn.updatedAt;
         return toReturn;
