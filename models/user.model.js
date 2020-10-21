@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Password missing']
     },
+    bio: {
+        type: String,
+        maxlength: 300
+    },
     languages: {
         type: [String],
         required: [true, 'You must specify a language'],
