@@ -11,8 +11,13 @@ router.get("/", (req, res, send) => {
 
 /* USERS */
 router.post("/login", usersController.doLogin);
+
 router.post("/users", usersController.createUser);
+router.get("/users", usersController.listUsers);
+router.patch("/users", usersController.updateUser);
+router.delete("/users", usersController.deleteUser);
+
 
 /* GAMES */
 router.get("/games", gamesController.getGames);
-router.patch("/games", gamesController.updateGame);
+router.post("/games", gamesController.createGame);
