@@ -7,8 +7,8 @@ module.exports.doLogin = (req, res, next) => {
 
 /* CRUD */
 module.exports.createUser = (req, res, next) => {
-    const {username, password, email, languages} = req.body;
-    const newUser = new User({username, password, email, languages});
+    const {username, password, bio, email, languages} = req.body;
+    const newUser = new User({username, password, bio, email, languages});
 
     newUser.save()
         .then(u => res.status(201).json(u))
@@ -16,7 +16,7 @@ module.exports.createUser = (req, res, next) => {
 };
 
 module.exports.listUsers = (req, res, next) => {
-    const query = req.query  
+    const query = req.query || {} 
 
     User.find(query)
         .then(users => {
@@ -50,6 +50,7 @@ module.exports.updateUser = (req, res, next) => {
 };
 
 module.exports.deleteUser = (req, res, next) => {
+    //needs to reference userId by cookie
     User.findByIdAndDelete()
         .then(() => {
             res.send('user deleted')
