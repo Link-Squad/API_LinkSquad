@@ -1,6 +1,7 @@
 const createError = require('http-errors');
 const User = require('../models/user.model');
 
+/* AUTH */
 module.exports.doLogin = (req, res, next) => {
 	const { email, password } = req.body;
 
