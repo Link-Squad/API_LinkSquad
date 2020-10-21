@@ -1,26 +1,26 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const gameSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      unique: [true, "must be unique"],
-      required: [true, "name required"],
+      unique: [true, 'must be unique'],
+      required: [true, 'name required'],
       toLowerCase: true,
     },
     img: {
       type: String,
-      default: "/default/image-placeholder.png",
+      default: '/default/image-placeholder.png',
     },
     description: String,
     url: String,
     genre: {
       type: String,
-      enum: ["FPS", "MOBA", "MMORPG", "ACTION"],
+      enum: ['FPS', 'MOBA', 'MMORPG', 'ACTION'],
     },
     platforms: {
       type: String,
-      enum: ["PS", "XBOX", "PC", "SWITCH"],
+      enum: ['PS', 'XBOX', 'PC', 'SWITCH'],
     },
   },
   {
@@ -39,6 +39,6 @@ const gameSchema = new mongoose.Schema(
   }
 );
 
-const Game = mongoose.model("Game", gameSchema);
+const Game = mongoose.model('Game', gameSchema);
 
 module.exports = Game;

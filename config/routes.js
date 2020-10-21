@@ -15,3 +15,4 @@ router.post("/users", usersController.createUser);
 
 /* GAMES */
 router.get("/games", gamesController.getGames);
+router.patch("/games", gamesController.updateGame);
