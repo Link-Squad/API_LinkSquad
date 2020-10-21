@@ -1,22 +1,23 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-const usersController = require("../controllers/users.controller");
-const gamesController = require("../controllers/games.controller");
+const auth = require('../middlewares/auth.middleware');
+const usersController = require('../controllers/users.controller');
+const gamesController = require('../controllers/games.controller');
 module.exports = router;
 
-router.get("/", (req, res, send) => {
-  res.send("Hello you");
+router.get('/', (req, res, send) => {
+	res.send('Hello you');
 });
 
 /* USERS */
-router.post("/login", usersController.doLogin);
+router.post('/login', auth.isNotAuthenticated, usersController.doLogin);
+router.get('/logout', auth.isAuthenticated, usersController.doLogout);
 
-router.post("/users", usersController.createUser);
-router.get("/users", usersController.listUsers);
-router.patch("/users", usersController.updateUser);
-router.delete("/users", usersController.deleteUser);
-
+router.post('/users', auth.isNotAuthenticated, usersController.createUser);
+router.get('/users', auth.isAuthenticated, usersController.listUsers);
+router.patch('/users', auth.isAuthenticated, usersController.updateUser);
+router.delete('/users', auth.isAuthenticated, usersController.deleteUser);
 
 /* GAMES */
-router.get("/games", gamesController.getGames);
+router.get('/games', gamesController.getGames);
