@@ -23,7 +23,7 @@ module.exports.listUsers = (req, res, next) => {
             res.json(users);
         })
         .catch(next)
-}
+};
 
 module.exports.updateUser = (req, res, next) => {
     const {username, password, email, bio, languages} = req.body;
@@ -57,3 +57,4 @@ module.exports.deleteUser = (req, res, next) => {
         })
         .catch(next);
 };
+
