@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const likedGameSchema = new mongoose.Schema(
+const userGameSchema = new mongoose.Schema(
   {
     game: {
       type: mongoose.Schema.Types.ObjectId,
@@ -29,6 +29,6 @@ const likedGameSchema = new mongoose.Schema(
   }
 );
 
-const likedGame = mongoose.model('LikedGame', likedGameSchema);
+const userGame = mongoose.model('UserGame', userGameSchema);
 
-module.exports = likedGame;
+module.exports = userGame;
