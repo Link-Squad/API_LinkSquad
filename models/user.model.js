@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Password missing']
     },
+    bio: {
+        type: String,
+        maxlength: 300
+    },
     languages: {
         type: [String],
         required: [true, 'You must specify a language'],
@@ -69,7 +73,7 @@ const userSchema = new mongoose.Schema({
         toReturn.id = document._id;
         delete toReturn.password;
         delete toReturn._id;
-        delete toReturn._v;
+        delete toReturn.__v;
         delete toReturn.createdAt;
         delete toReturn.updatedAt;
         return toReturn;
