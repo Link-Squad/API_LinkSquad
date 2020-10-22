@@ -43,7 +43,7 @@ module.exports.createUser = (req, res, next) => {
 		.catch(next);
 };
 
-module.exports.listUsers = (req, res, next) => {
+module.exports.getUsers = (req, res, next) => {
 	const query = req.query || {};
 
 	User.find(query)

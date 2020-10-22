@@ -18,8 +18,8 @@ router.delete('/games', gamesController.deleteGame);
 router.post('/login', auth.isNotAuthenticated, usersController.doLogin);
 router.get('/logout', auth.isAuthenticated, usersController.doLogout);
 
+router.get('/users', auth.isAuthenticated, usersController.getUsers);
 router.post('/users', auth.isNotAuthenticated, usersController.createUser);
-router.get('/users', auth.isAuthenticated, usersController.listUsers);
 router.patch('/users', auth.isAuthenticated, usersController.updateUser);
 router.delete('/users', auth.isAuthenticated, usersController.deleteUser);
 
