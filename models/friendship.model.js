@@ -2,20 +2,15 @@ const mongoose = require('mongoose');
 
 const friendshipSchema = new mongoose.Schema(
 	{
-		user1: {
+		users: [{
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User',
-			required: true,
-		},
-		user2: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'User',
-			required: true,
-		},
-		accepted: {
-			type: Boolean,
-			default: false,
-		},
+			required: true
+		}],
+		confirmation: [{
+			type: mongoose.Schema.Types.ObjectId, //could be string?
+			ref:'User'
+		}]
 	},
 	{
 		timestamps: true,
@@ -27,11 +22,14 @@ const friendshipSchema = new mongoose.Schema(
 				delete toReturn.createdAt;
 				delete toReturn.updatedAt;
 				return toReturn;
-			},
-		},
+			}
+		}
 	}
 );
 
-const friendship = mongoose.model('Friendship', friendshipSchema);
+friendshipSchema.methods.areFriends = function () {
+	//users are friends if confirmation field holds both IDs
+};
 
+const friendship = mongoose.model('Friendship', friendshipSchema);
 module.exports = friendship;
