@@ -17,6 +17,7 @@ router.delete('/games', gamesController.deleteGame);
 router.get('/logout', auth.isAuthenticated, usersController.doLogout);
 router.post('/login', auth.isNotAuthenticated, usersController.doLogin);
 
+
 router.get('/users', auth.isAuthenticated, usersController.listUsers);
 router.post('/users', auth.isNotAuthenticated, usersController.createUser);
 router.patch('/users', auth.isAuthenticated, usersController.updateUser);
