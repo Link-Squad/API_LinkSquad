@@ -28,7 +28,7 @@ const friendshipSchema = new mongoose.Schema(
 );
 
 friendshipSchema.methods.areFriends = function () {
-	//users are friends if confirmation field holds both IDs
+	return this.accepted.length === 2;
 };
 
 const friendship = mongoose.model('Friendship', friendshipSchema);
