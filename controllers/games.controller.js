@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Game = require('../models/games.model');
 
 module.exports.getGames = (req, res, next) => {
-  Game.find({ name: req.body.name.toLowerCase() })
+  Game.find({ name: req.params.value.toLowerCase() })
     .then((results) => {
       res.json(results);
     })
