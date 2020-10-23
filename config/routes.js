@@ -28,3 +28,6 @@ router.post('/usersgames/:game/:user', usersGamesController.createUserGame);
 router.get('/usersgames/game/:id', usersGamesController.getUserGameByGame);
 router.get('/usersgames/user/:id', usersGamesController.getUserGameByUser);
 router.get('/usersgames/:id/', usersGamesController.getUserGameById);
+router.delete('/usersgames/delete/:game/:user', usersGamesController.deleteUserGame);
+router.delete('/usersgames/deletegame/:game', usersGamesController.deleteUserGameByGame);
+router.delete('/usersgames/deleteuser/:user', usersGamesController.deleteUserGameByUser);
