@@ -43,7 +43,7 @@ module.exports.createUser = (req, res, next) => {
 		.catch(next);
 };
 
-module.exports.getUsers = (req, res, next) => {
+module.exports.listUsers = (req, res, next) => {
 	const query = req.query || {};
 
 	User.find(query)
@@ -55,7 +55,9 @@ module.exports.getUsers = (req, res, next) => {
 
 module.exports.updateUser = (req, res, next) => {
 	const currentUser = req.session.user;
-	const { username, password, email, bio, languages } = req.body;
+	//We should take allowed fields directly from User model 
+	const allowedFields = ['username', 'password', 'email', 'bio', 'img', 'languages'];
+	const fieldsToUpdate = Object.entries(req.body).filter(field => allowedFields.includes(field[0]) && field[1]);
 
 	User.findById(currentUser.id)
 		.then((user) => {
@@ -64,12 +66,10 @@ module.exports.updateUser = (req, res, next) => {
 				res.status(404).send('User not found');
 			}
 
-			//THIS IS NOT SCALABLE IF WE CREATE NEW FIELDS
-			user.username = username ? username : user.username;
-			user.email = email ? email : user.email;
-			user.bio = bio ? bio : user.bio;
-			user.password = password ? password : user.password;
-			user.languages = languages ? languages : user.languages;
+			fieldsToUpdate.forEach(field => {
+				const [key, value] = field;
+				user[key] = value;
+			});
 
 			user
 				.save()
