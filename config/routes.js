@@ -24,4 +24,7 @@ router.patch('/users', auth.isAuthenticated, usersController.updateUser);
 router.delete('/users', auth.isAuthenticated, usersController.deleteUser);
 
 /*USERS GAMES*/
-router.post('/users/:game/:user', usersGamesController.createUserGame);
+router.post('/usersgames/:game/:user', usersGamesController.createUserGame);
+router.get('/usersgames/game/:id', usersGamesController.getUserGameByGame);
+router.get('/usersgames/user/:id', usersGamesController.getUserGameByUser);
+router.get('/usersgames/:id/', usersGamesController.getUserGameById);
