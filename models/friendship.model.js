@@ -7,7 +7,7 @@ const friendshipSchema = new mongoose.Schema(
 			ref: 'User',
 			required: true
 		}],
-		confirmation: [{
+		accepted: [{
 			type: mongoose.Schema.Types.ObjectId, //could be string?
 			ref:'User'
 		}]
