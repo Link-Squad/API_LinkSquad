@@ -45,6 +45,7 @@ module.exports.createUser = (req, res, next) => {
 
 module.exports.listUsers = (req, res, next) => {
 	const query = req.query || {};
+	console.log(query)
 
 	User.find(query)
 		.then((users) => {
