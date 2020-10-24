@@ -24,10 +24,6 @@ router.patch('/users', auth.isAuthenticated, usersController.updateUser);
 router.delete('/users', auth.isAuthenticated, usersController.deleteUser);
 
 /*USERS GAMES*/
-router.post('/usersgames/:game/:user', usersGamesController.createUserGame);
-router.get('/usersgames/game/:id', usersGamesController.getUserGameByGame);
-router.get('/usersgames/user/:id', usersGamesController.getUserGameByUser);
-router.get('/usersgames/:id/', usersGamesController.getUserGameById);
-router.delete('/usersgames/delete/:game/:user', usersGamesController.deleteUserGame);
-router.delete('/usersgames/deletegame/:game', usersGamesController.deleteUserGameByGame);
-router.delete('/usersgames/deleteuser/:user', usersGamesController.deleteUserGameByUser);
+router.post('/usersgames/new/', usersGamesController.createUserGame);
+router.get('/usersgames/', usersGamesController.getUserGame);
+router.delete('/usersgames/delete/', usersGamesController.deleteUserGame);
