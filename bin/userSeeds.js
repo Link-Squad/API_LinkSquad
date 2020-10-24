@@ -5,7 +5,15 @@ const mongoose = require('mongoose');
 const User = require('../models/user.model');
 
 const createUsers = (amount) => {
-    const users = [];
+    const testUser = {
+        username: 'test',
+        email: 'testtest@testmail.test',
+        password: 12345,
+        bio: 'This is the test user',
+        languages: ['English'],
+    };
+
+    const users = [testUser];
 
 	for (let i = 0; i < amount; i++) {
 		const newUser = {
@@ -21,6 +29,7 @@ const createUsers = (amount) => {
     
     return User.create(users);
 };
+
 
 User.deleteMany({}).then(() => {
     createUsers(25)
