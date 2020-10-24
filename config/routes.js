@@ -5,6 +5,7 @@ const auth = require('../middlewares/auth.middleware');
 const usersController = require('../controllers/users.controller');
 const gamesController = require('../controllers/games.controller');
 const friendshipsController = require('../controllers/friendships.controller');
+const offersController = require('../controllers/offers.controller');
 
 
 /* GAMES */
@@ -27,5 +28,8 @@ router.delete('/users', auth.isAuthenticated, usersController.deleteUser);
 router.get('/friends/:id', auth.isAuthenticated, friendshipsController.getFriends);
 router.post('/friends/:id', auth.isAuthenticated, friendshipsController.addFriend);
 router.patch('/friends/:id', auth.isAuthenticated, friendshipsController.updateFriend);
+
+/* OFFERS */
+router.get('/offers', auth.isAuthenticated, offersController.getOffers);
 
 module.exports = router;
