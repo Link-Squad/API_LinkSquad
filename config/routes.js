@@ -31,5 +31,8 @@ router.patch('/friends/:id', auth.isAuthenticated, friendshipsController.updateF
 
 /* OFFERS */
 router.get('/offers', auth.isAuthenticated, offersController.getOffers);
+router.post('/offers', auth.isAuthenticated, offersController.createOffer);
+router.patch('/offers/:id', auth.isAuthenticated, offersController.updateOffer);
+router.delete('/offers/:id', auth.isAuthenticated, offersController.deleteOffer);
 
 module.exports = router;
