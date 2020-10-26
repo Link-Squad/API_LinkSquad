@@ -1,13 +1,10 @@
-require('dotenv').config();
-require('../config/db.config');
 const faker = require('faker');
-const mongoose = require('mongoose');
 const User = require('../models/user.model');
 
 const createUsers = (amount) => {
     const testUser = {
         username: 'test',
-        email: 'testtest@testmail.test',
+        email: 'test@test.te',
         password: 12345,
         bio: 'This is the test user',
         languages: ['English'],
@@ -30,14 +27,5 @@ const createUsers = (amount) => {
     return User.create(users);
 };
 
-
-User.deleteMany({}).then(() => {
-    createUsers(25)
-        .then((users) => {
-            console.log(users);
-            mongoose.connection.close();
-        })
-        .catch(e => console.error(e));
-});
 
 module.exports = createUsers;
