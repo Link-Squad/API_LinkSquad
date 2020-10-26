@@ -1,6 +1,3 @@
-require('dotenv').config();
-require('../config/db.config');
-
 const {
   returnRandomSubArray,
   returnRandomNumer
