@@ -11,11 +11,10 @@ mongoose
   .connect(DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
+    useCreateIndex: true
   })
   .then(() => {
-	console.log('Connection stablished at:  ' + DB_URI);
-	console.log(mongoose.connection.db);
+    console.log('Connection stablished at:  ' + DB_URI);
     mongoose.connection.db.dropDatabase().then(() => {
       console.log('Cleared database');
       Promise.all([seedUsers(50), seedGames(15)]).then((models) => {
@@ -24,7 +23,7 @@ mongoose
         Promise.all([
           seedFriendships(15, users),
           seedOffers(10, users, games),
-          seedUsersGames(users, games),
+          seedUsersGames(users, games,2),
         ])
           .then((d) => {
             console.info('Database seeded, closing database...');
