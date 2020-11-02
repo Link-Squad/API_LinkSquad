@@ -20,7 +20,7 @@ module.exports.doLogin = (req, res, next) => {
           throw createError(404, 'wrong credentials');
         } else {
           req.session.user = user;
-          res.send('Login Successful');
+          res.json(user);
         }
       });
     })

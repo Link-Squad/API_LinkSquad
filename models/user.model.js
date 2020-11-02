@@ -30,6 +30,10 @@ const userSchema = new mongoose.Schema(
 			required: [true, 'You must specify a language'],
 			enum: ['Español', 'English', 'Français'],
 		},
+		views: {
+			type: Number,
+			default: 0
+		},
 		img: {
 			type: String,
 			default: 'default img url',
@@ -47,20 +51,20 @@ const userSchema = new mongoose.Schema(
 		//TODO: CHECK IF LINK BELONGS TO CORRESPONDING SOCIAL MEDIA
 		social: {
 			twitter: {
-				id: String,
-				link: String,
+				type: String,
+				default: null
 			},
 			twitch: {
-				id: String,
-				link: String,
+				type: String,
+				default: null
 			},
 			youtube: {
-				id: String,
-				link: String,
+				type: String,
+				default: null
 			},
 			discord: {
-				id: String,
-				link: String,
+				type: String,
+				default: null
 			},
 		},
 	},
