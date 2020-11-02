@@ -25,6 +25,7 @@ router.get('/users', auth.isAuthenticated, usersController.listUsers);
 router.post('/users', auth.isNotAuthenticated, usersController.createUser);
 router.patch('/users', auth.isAuthenticated, usersController.updateUser);
 router.delete('/users', auth.isAuthenticated, usersController.deleteUser);
+router.get('/users/search',usersController.findUsers)
 
 
 /*USERS GAMES*/
