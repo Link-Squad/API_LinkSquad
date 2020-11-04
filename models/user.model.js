@@ -1,7 +1,13 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const helpers = require('../helpers/helpers');
+
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+const YOUTUBE_PATTERN = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/g;
+const TWITTER_PATTERN = /^(http\:\/\/|https\:\/\/)?(?:www\.)?twitter\.com\/(?:#!\/)?@?([^\?#]*)(?:[?#].*)?$/i
+const DISCORD_PATTERN = null;
+const TWITCH_PATTERN = null
+const AVAILABLE_LANGUAGES = ['spanish', 'english', 'french', 'german', 'chinese', 'japanese', 'hindi', 'bengali', 'korean', 'italian', 'turkish', 'portuguese']
 
 const userSchema = new mongoose.Schema(
 	{
@@ -20,6 +26,7 @@ const userSchema = new mongoose.Schema(
 		password: {
 			type: String,
 			required: [true, 'Password missing'],
+			trim: true
 		},
 		bio: {
 			type: String,
@@ -28,7 +35,7 @@ const userSchema = new mongoose.Schema(
 		languages: {
 			type: [String],
 			required: [true, 'You must specify a language'],
-			enum: ['Español', 'English', 'Français'],
+			enum: AVAILABLE_LANGUAGES
 		},
 		views: {
 			type: Number,
@@ -48,11 +55,12 @@ const userSchema = new mongoose.Schema(
 				default: false,
 			},
 		},
-		//TODO: CHECK IF LINK BELONGS TO CORRESPONDING SOCIAL MEDIA
+		//TODO: FIND OR CREATE REGEX FOR TWITCH & DISCORD 
 		social: {
 			twitter: {
 				type: String,
-				default: null
+				default: null,
+				match: TWITTER_PATTERN
 			},
 			twitch: {
 				type: String,
@@ -60,7 +68,8 @@ const userSchema = new mongoose.Schema(
 			},
 			youtube: {
 				type: String,
-				default: null
+				default: null,
+				match: YOUTUBE_PATTERN
 			},
 			discord: {
 				type: String,
