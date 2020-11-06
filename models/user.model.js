@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema(
 		},
 		img: {
 			type: String,
-			default: 'default img url',
+			default: 'https://cdn4.iconfinder.com/data/icons/user-avatar-flat-icons/512/User_Avatar-31-512.png',
 		},
 		status: {
 			token: {
