@@ -63,8 +63,7 @@ module.exports.updateUser = (req, res, next) => {
     'email',
     'bio',
     'img',
-    'languages',
-    'games'
+    'languages'
   ];
 
   const fieldsToUpdate = Object.entries(req.body).filter(
