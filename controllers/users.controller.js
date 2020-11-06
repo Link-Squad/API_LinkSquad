@@ -64,7 +64,9 @@ module.exports.updateUser = (req, res, next) => {
     'bio',
     'img',
     'languages',
+    'games'
   ];
+
   const fieldsToUpdate = Object.entries(req.body).filter(
     (field) => allowedFields.includes(field[0]) && field[1]
   );
@@ -72,7 +74,6 @@ module.exports.updateUser = (req, res, next) => {
   User.findById(currentUser.id)
     .then((user) => {
       if (!user) {
-        //REVISE THIS
         res.status(404).send('User not found');
       }
 
@@ -103,7 +104,14 @@ module.exports.deleteUser = (req, res, next) => {
 module.exports.findUsers = (req, res, next) => {
   const userRegex = new RegExp(req.query.username.toLowerCase(), 'i');
   User.find({ username: { $regex: userRegex } })
+    .populate({
+      path: 'userGames',
+      populate: {
+        path: 'game',
+      },
+    })
     .then((results) => {
+      console.log(results);
       res.json(results);
     })
     .catch((err) => err);

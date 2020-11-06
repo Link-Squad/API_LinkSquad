@@ -7,7 +7,7 @@ const YOUTUBE_PATTERN = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|yout
 const TWITTER_PATTERN = /^(http\:\/\/|https\:\/\/)?(?:www\.)?twitter\.com\/(?:#!\/)?@?([^\?#]*)(?:[?#].*)?$/i
 const DISCORD_PATTERN = null;
 const TWITCH_PATTERN = null
-const AVAILABLE_LANGUAGES = ['spanish', 'english', 'french', 'german', 'chinese', 'japanese', 'hindi', 'bengali', 'korean', 'italian', 'turkish', 'portuguese']
+const AVAILABLE_LANGUAGES = ['spanish', 'english', 'french', 'german', 'chinese', 'japanese', 'hindi', 'bengali', 'korean', 'italian', 'turkish', 'portuguese', 'arabic']
 
 const userSchema = new mongoose.Schema(
 	{
@@ -34,7 +34,6 @@ const userSchema = new mongoose.Schema(
 		},
 		languages: {
 			type: [String],
-			required: [true, 'You must specify a language'],
 			enum: AVAILABLE_LANGUAGES
 		},
 		views: {
@@ -94,22 +93,29 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.pre('save', function (next) {
-	if (this.isModified('password')) {
-		bcrypt
-			.hash(this.password, 10)
-			.then((hash) => {
-				this.password = hash;
-				next();
-			})
-			.catch(next);
-	} else {
-		next();
-	}
+  if (this.isModified('password')) {
+    bcrypt
+      .hash(this.password, 10)
+      .then((hash) => {
+        this.password = hash;
+        next();
+      })
+      .catch(next);
+  } else {
+    next();
+  }
 });
 
 userSchema.methods.checkPassword = function (password) {
-	return bcrypt.compare(password, this.password);
+  return bcrypt.compare(password, this.password);
 };
+
+userSchema.virtual('userGames', {
+  ref: 'UserGame',
+  localField: '_id',
+  foreignField: 'user',
+  justOne: false,
+});
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

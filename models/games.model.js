@@ -10,7 +10,7 @@ const gameSchema = new mongoose.Schema(
     },
     img: {
       type: String,
-      default: '/default/image-placeholder.png',
+      default: './default/image-placeholder.png',
     },
     description: String,
     url: String,
@@ -19,7 +19,7 @@ const gameSchema = new mongoose.Schema(
       enum: ['FPS', 'MOBA', 'MMORPG', 'ACTION'],
     },
     platforms: {
-      type: String,
+      type: [String],
       enum: ['PS', 'XBOX', 'PC', 'SWITCH'],
     },
   },
