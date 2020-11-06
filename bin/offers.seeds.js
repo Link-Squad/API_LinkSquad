@@ -14,6 +14,7 @@ const createOffers = (amount, users, games) => {
             game: randGame,
             img: randGame.banner,
             role: helpers.returnRandomElement(ROLES),
+            rank: helpers.returnRandomNumer(1, 10),
             description: faker.lorem.sentence()
         };
 

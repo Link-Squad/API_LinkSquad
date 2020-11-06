@@ -13,7 +13,12 @@ const offerSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        required: true
+        required: true,
+    },
+    rank: {
+        type: String,
+        required: true,
+        default: '1'
     },
     description: {
         type: String,
