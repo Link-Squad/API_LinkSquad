@@ -63,8 +63,9 @@ module.exports.updateUser = (req, res, next) => {
     'email',
     'bio',
     'img',
-    'languages',
+    'languages'
   ];
+
   const fieldsToUpdate = Object.entries(req.body).filter(
     (field) => allowedFields.includes(field[0]) && field[1]
   );
@@ -72,7 +73,6 @@ module.exports.updateUser = (req, res, next) => {
   User.findById(currentUser.id)
     .then((user) => {
       if (!user) {
-        //REVISE THIS
         res.status(404).send('User not found');
       }
 
