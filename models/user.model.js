@@ -79,6 +79,7 @@ const userSchema = new mongoose.Schema(
 	{
 		timestamps: true,
 		toJSON: {
+			virtuals: true,
 			transform: (document, toReturn) => {
 				toReturn.id = document._id;
 				delete toReturn.password;
