@@ -48,6 +48,19 @@ module.exports.listUsers = (req, res, next) => {
   console.log(query);
 
   User.find(query)
+    .populate({
+      path: 'userGames',
+      populate: {
+        path: 'game',
+      },
+    })
+    .populate({
+      path: 'friendship',
+      populate: {
+        path: 'users accepted',
+        select: 'username',
+      },
+    })
     .then((users) => {
       res.json(users);
     })
@@ -63,7 +76,7 @@ module.exports.updateUser = (req, res, next) => {
     'email',
     'bio',
     'img',
-    'languages'
+    'languages',
   ];
 
   const fieldsToUpdate = Object.entries(req.body).filter(
