@@ -31,6 +31,7 @@ router.get('/users/search',usersController.findUsers)
 /*USERS GAMES*/
 router.post('/usersgames/new/', usersGamesController.createUserGame);
 router.get('/usersgames/', usersGamesController.getUserGame);
+router.get('/games/:gameId/users', usersGamesController.getUsersByGame);
 router.delete('/usersgames/delete/', usersGamesController.deleteUserGame);
 
 /* FRIENDSHIPS */
