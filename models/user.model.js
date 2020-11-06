@@ -110,5 +110,12 @@ userSchema.virtual('userGames', {
   justOne: false,
 });
 
+userSchema.virtual('friendship', {
+  ref: 'Friendship',
+  localField: '_id',
+  foreignField: 'users',
+  justOne: false,
+});
+
 const User = mongoose.model('User', userSchema);
 module.exports = User;

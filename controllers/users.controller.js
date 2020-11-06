@@ -109,6 +109,7 @@ module.exports.findUsers = (req, res, next) => {
         path: 'game',
       },
     })
+    .populate('friendship')
     .then((results) => {
       console.log(results);
       res.json(results);
