@@ -17,7 +17,7 @@ mongoose
     console.log('Connection stablished at:  ' + DB_URI);
     mongoose.connection.db.dropDatabase().then(() => {
       console.log('Cleared database');
-      Promise.all([seedUsers(50), seedGames(5)]).then((models) => {
+      Promise.all([seedUsers(50), seedGames(0)]).then((models) => {
         const [users, games] = models;
 
         Promise.all([

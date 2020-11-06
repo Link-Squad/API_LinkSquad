@@ -12,6 +12,12 @@ const gameSchema = new mongoose.Schema(
       type: String,
       default: './default/image-placeholder.png',
     },
+    banner: {
+      type: String,
+    },
+    icon: {
+      type: String
+    },
     description: String,
     url: String,
     genre: {

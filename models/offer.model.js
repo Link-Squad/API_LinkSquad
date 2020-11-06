@@ -18,6 +18,10 @@ const offerSchema = new mongoose.Schema({
     description: {
         type: String,
         required: true
+    },
+    img : {
+        type: String,
+        default: './banners/default.png'
     }
 }, {
     timestamps: true,
