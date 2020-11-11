@@ -6,7 +6,7 @@ const {
 
 const overwatch = {
   name: 'overwatch',
-  img: './icons/overwatch.png',
+  logo: './logos/overwatch.png',
   icon: './icons/overwatch.png',
   banner: './banners/overwatch.jpg',
   description: 'Overwatch is a competitive 6 vs 6 first person shooter.',
@@ -17,7 +17,7 @@ const overwatch = {
 
 const dota = {
   name: 'dota',
-  img: './icons/dota.png',
+  logo: './logos/dota.png',
   icon: './icons/dota.png',
   banner: './banners/dota.png',
   description: 'Dota is a song by Swedish band Basshunter',
@@ -28,7 +28,7 @@ const dota = {
 
 const counter = {
   name: 'counterstrike',
-  img: './icons/counter.png',
+  logo: './logos/counter.png',
   icon: './icons/counter.png',
   banner: './banners/counter.jpg',
   description: 'A popular game amongst slav teenagers',
@@ -39,7 +39,7 @@ const counter = {
 
 const lol = {
   name: 'lol',
-  img: './icons/lol.png',
+  logo: './logos/lol.png',
   icon: './icons/lol.png',
   banner: './banners/lol.jpg',
   description: 'Lots of Love <3',
@@ -50,7 +50,7 @@ const lol = {
 
 const fortnite = {
   name: 'fortnite',
-  img: './icons/fortnite.png',
+  logo: './logos/fortnite.png',
   icon: './icons/fortnite.png',
   banner: './banners/fortnite.jpeg',
   description: 'A time based construction simulator with skydiving',
@@ -67,7 +67,7 @@ const createGames = (amount) => {
   for (let i = 0; i < amount; i++) {
     const newGame = {
       name: faker.commerce.productName(),
-      img: faker.image.technics(),
+      logo: fakerlogosimage.technics(),
       description: faker.lorem.sentence(),
       url: faker.internet.domainName(),
       genre: returnRandomElement(Game.schema.path('genre').enumValues),

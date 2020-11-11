@@ -8,9 +8,8 @@ const gameSchema = new mongoose.Schema(
       required: [true, 'name required'],
       toLowerCase: true,
     },
-    img: {
+    logo: {
       type: String,
-      default: './default/image-placeholder.png',
     },
     banner: {
       type: String,
