@@ -58,7 +58,6 @@ module.exports.createUser = (req, res, next) => {
 
 module.exports.listUsers = (req, res, next) => {
 	const query = req.query || {};
-	console.log(query);
 
 	User.find(query)
 		.populate({
@@ -136,7 +135,6 @@ module.exports.findUsers = (req, res, next) => {
 		})
 		.populate('friendship')
 		.then(results => {
-			console.log(results);
 			res.json(results);
 		})
 		.catch(err => err);
