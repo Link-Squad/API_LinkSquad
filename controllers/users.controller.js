@@ -19,7 +19,7 @@ module.exports.doLogin = (req, res, next) => {
 		.populate({
 			path: 'friendship',
 			populate: {
-				path: 'users accepted',
+				path: 'users',
 				select: 'username',
 			},
 		})
@@ -69,7 +69,7 @@ module.exports.listUsers = (req, res, next) => {
 		.populate({
 			path: 'friendship',
 			populate: {
-				path: 'users accepted',
+				path: 'users',
 				select: 'username',
 			},
 		})

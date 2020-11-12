@@ -35,9 +35,10 @@ router.get('/games/:gameId/users', usersGamesController.getUsersByGame);
 router.delete('/usersgames/delete/', usersGamesController.deleteUserGame);
 
 /* FRIENDSHIPS */
-router.get('/friends/:id', auth.isAuthenticated, friendshipsController.getFriends);
-router.post('/friends/:id', auth.isAuthenticated, friendshipsController.addFriend);
-router.patch('/friends/:id', auth.isAuthenticated, friendshipsController.updateFriend);
+router.get('/friends/:userId', auth.isAuthenticated, friendshipsController.getFriends);
+router.post('/friends/:befriendedUser', auth.isAuthenticated, friendshipsController.addFriend);
+router.patch('/friends/:requestingUser', auth.isAuthenticated, friendshipsController.acceptFriend);
+router.delete('/friends/:friendshipId', auth.isAuthenticated, friendshipsController.deleteFriendship);
 
 
 /* OFFERS */

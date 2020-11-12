@@ -2,14 +2,24 @@ const mongoose = require('mongoose');
 
 const friendshipSchema = new mongoose.Schema(
 	{
+		requestingUser: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User',
+			required: true,
+		},
+		befriendedUser: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User',
+			required: true,
+		},
+		accepted: {
+			type: Boolean,
+			default: false
+		},
 		users: [{
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User',
-			required: true
-		}],
-		accepted: [{
-			type: mongoose.Schema.Types.ObjectId, //could be string?
-			ref:'User'
+			required: true,
 		}]
 	},
 	{
@@ -22,14 +32,10 @@ const friendshipSchema = new mongoose.Schema(
 				delete toReturn.createdAt;
 				delete toReturn.updatedAt;
 				return toReturn;
-			}
-		}
+			},
+		},
 	}
 );
-
-friendshipSchema.methods.areFriends = function () {
-	return this.accepted.length === 2;
-};
 
 const friendship = mongoose.model('Friendship', friendshipSchema);
 module.exports = friendship;

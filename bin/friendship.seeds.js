@@ -8,8 +8,10 @@ const createFriendships = (amount, users) => {
         const randUsers = helpers.returnRandomSubArray(users, 2);
 
         const newFriendship = {
+            requestingUser: randUsers[0],
+            befriendedUser: randUsers[1],
             users: randUsers,
-            accepted: randUsers
+            accepted: true
         };
 
         friendships.push(newFriendship);
