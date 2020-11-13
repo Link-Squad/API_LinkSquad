@@ -36,6 +36,7 @@ router.delete('/usersgames/delete/', usersGamesController.deleteUserGame);
 
 /* FRIENDSHIPS */
 router.get('/friends/:userId', auth.isAuthenticated, friendshipsController.getFriends);
+router.get('/friends/status/:friendId', auth.isAuthenticated, friendshipsController.getFriendshipStatus);
 router.post('/friends/:befriendedUser', auth.isAuthenticated, friendshipsController.addFriend);
 router.patch('/friends/:requestingUser', auth.isAuthenticated, friendshipsController.acceptFriend);
 router.delete('/friends/:friendshipId', auth.isAuthenticated, friendshipsController.deleteFriendship);

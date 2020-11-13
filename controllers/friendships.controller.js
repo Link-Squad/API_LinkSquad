@@ -1,4 +1,5 @@
 const createError = require('http-errors');
+const friendship = require('../models/friendship.model');
 const { where } = require('../models/friendship.model');
 const Friendship = require('../models/friendship.model');
 
@@ -32,6 +33,32 @@ module.exports.getFriends = (req, res, next) => {
 		.catch(next);
 };
 
+module.exports.getFriendshipStatus = (req, res, next) => {
+	const userId = req.session.user.id;
+	const { friendId } = req.params;
+	const response = {}
+
+	Friendship.findOne()
+		.where('users')
+		.all([userId, friendId])
+		.then(friendship => {
+			if (!friendship) {
+				response.status = 'none'
+			}
+
+			if (!friendship.accepted) {
+				response.status = 'pending'
+			}
+
+			if (friendship.accepted) {
+				response.status = 'friends'
+			}
+
+			res.json(response)
+		})
+		.catch(next)
+};
+
 module.exports.acceptFriend = (req, res, next) => {
 	const { requestingUser } = req.params;
 	const befriendedUser = req.session.user.id;
@@ -45,7 +72,10 @@ module.exports.acceptFriend = (req, res, next) => {
 			}
 
 			if (!friendship.requestingUser.equals(requestingUser)) {
-				throw createError(403, 'You are not authorized to accept this request')
+				throw createError(
+					403,
+					'You are not authorized to accept this request'
+				);
 			}
 
 			friendship.accepted = true;
