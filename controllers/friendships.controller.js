@@ -36,27 +36,24 @@ module.exports.getFriends = (req, res, next) => {
 module.exports.getFriendshipStatus = (req, res, next) => {
 	const userId = req.session.user.id;
 	const { friendId } = req.params;
-	const response = {}
 
 	Friendship.findOne()
 		.where('users')
 		.all([userId, friendId])
 		.then(friendship => {
 			if (!friendship) {
-				response.status = 'none'
+				res.send('none');
+			} else if (!friendship.accepted) {
+				if (friendship.befriendedUser.equals(userId)) {
+					res.send('pending');
+				} else {
+					res.send('sent');
+				}
+			} else if (friendship.accepted) {
+				res.send('friends');
 			}
-
-			if (!friendship.accepted) {
-				response.status = 'pending'
-			}
-
-			if (friendship.accepted) {
-				response.status = 'friends'
-			}
-
-			res.json(response)
 		})
-		.catch(next)
+		.catch(next);
 };
 
 module.exports.acceptFriend = (req, res, next) => {
@@ -89,17 +86,13 @@ module.exports.acceptFriend = (req, res, next) => {
 
 module.exports.deleteFriendship = (req, res, next) => {
 	const userId = req.session.user.id;
-	const { friendshipId } = req.params;
+	const { friendId } = req.params;
 
-	Friendship.findById({ id: friendshipId })
+	Friendship.findOneAndDelete()	
+		.where('users')
+		.all([userId, friendId])
 		.then(friendship => {
-			if (!friendship.users.includes(userId)) {
-				res.status(403).json('You cannot edit this resource');
-			}
-
-			Friendship.deleteOne(friendship)
-				.then(f => res.status(200).json('Friendship deleted'))
-				.catch(next);
+			res.send('Friendship deleted')
 		})
-		.catch(next);
+		.catch(next)
 };
