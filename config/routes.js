@@ -1,4 +1,5 @@
 const express = require('express');
+const fileUploader = require('../configs/cloudinary.config');
 const router = express.Router();
 
 const auth = require('../middlewares/auth.middleware');
@@ -23,7 +24,7 @@ router.post('/login', auth.isNotAuthenticated, usersController.doLogin);
 
 router.get('/users', auth.isAuthenticated, usersController.listUsers);
 router.post('/users', auth.isNotAuthenticated, usersController.createUser);
-router.patch('/users', auth.isAuthenticated, usersController.updateUser);
+router.patch('/users', auth.isAuthenticated, fileUploader.single('avatar'), usersController.updateUser);
 router.delete('/users', auth.isAuthenticated, usersController.deleteUser);
 router.get('/users/search',usersController.findUsers)
 
