@@ -1,0 +1,1 @@
+module.exports.AVAILABLE_USER_LANGUAGES = ['spanish', 'english', 'french', 'german', 'chinese', 'japanese', 'hindi', 'bengali', 'korean', 'italian', 'turkish', 'portuguese', 'arabic']

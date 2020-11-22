@@ -1,6 +1,7 @@
 const faker = require('faker');
 const { returnRandomElement } = require('../helpers/helpers');
 const User = require('../models/user.model');
+const {AVAILABLE_USER_LANGUAGES} = require('../constants/constants');
 
 const createUsers = (amount) => {
     const testUser = {
@@ -21,7 +22,7 @@ const createUsers = (amount) => {
             email: faker.internet.email(),
             password: faker.internet.password(),
 			bio: faker.lorem.sentence(),
-			languages: returnRandomElement(User.schema.path('languages').enumValues),
+			languages: returnRandomElement(AVAILABLE_USER_LANGUAGES),
             avatar: faker.internet.avatar(),
             views: Math.floor(Math.random() * 9999999)
 		};

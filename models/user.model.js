@@ -7,7 +7,7 @@ const YOUTUBE_PATTERN = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|yout
 const TWITTER_PATTERN = /^(http\:\/\/|https\:\/\/)?(?:www\.)?twitter\.com\/(?:#!\/)?@?([^\?#]*)(?:[?#].*)?$/i
 const DISCORD_PATTERN = null;
 const TWITCH_PATTERN = null
-const AVAILABLE_LANGUAGES = ['spanish', 'english', 'french', 'german', 'chinese', 'japanese', 'hindi', 'bengali', 'korean', 'italian', 'turkish', 'portuguese', 'arabic']
+const {AVAILABLE_USER_LANGUAGES} = require('../constants/constants');
 
 const userSchema = new mongoose.Schema(
 	{
@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema(
 		},
 		languages: {
 			type: [String],
-			enum: AVAILABLE_LANGUAGES
+			enum: AVAILABLE_USER_LANGUAGES
 		},
 		views: {
 			type: Number,
