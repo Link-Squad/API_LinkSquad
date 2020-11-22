@@ -83,7 +83,8 @@ module.exports.listUsers = (req, res, next) => {
 module.exports.updateUser = (req, res, next) => {
 	const currentUser = req.session.user;
 	const { username, password, email, bio, languages } = req.body;
-	const avatar = req.file ? req.file.url : undefined;
+	const avatar = req.file ? req.file.path : undefined;
+	console.log(req.file)
 
 	const userChanges = helpers.removeUndefinedProperties({
 		username,
