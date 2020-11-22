@@ -1,5 +1,6 @@
 const createError = require('http-errors');
 const User = require('../models/user.model');
+const helpers = require('../helpers/helpers');
 
 /* AUTH */
 module.exports.doLogin = (req, res, next) => {
@@ -81,35 +82,20 @@ module.exports.listUsers = (req, res, next) => {
 
 module.exports.updateUser = (req, res, next) => {
 	const currentUser = req.session.user;
-	//We should take allowed fields directly from User model
-	const allowedFields = [
-		'username',
-		'password',
-		'email',
-		'bio',
-		'img',
-		'languages',
-	];
+	const { username, password, email, bio, languages } = req.body;
+	const avatar = req.file ? req.file.url : undefined;
 
-	const fieldsToUpdate = Object.entries(req.body).filter(
-		field => allowedFields.includes(field[0]) && field[1]
-	);
+	const userChanges = helpers.removeUndefinedProperties({
+		username,
+		password,
+		email,
+		bio,
+		languages,
+		avatar,
+	});
 
-	User.findById(currentUser.id)
-		.then(user => {
-			if (!user) {
-				res.status(404).send('User not found');
-			}
-
-			fieldsToUpdate.forEach(field => {
-				const [key, value] = field;
-				user[key] = value;
-			});
-
-			user.save()
-				.then(u => res.status(200).json(u))
-				.catch(next);
-		})
+	User.findByIdAndUpdate(currentUser.id, userChanges, { new: true })
+		.then(u => res.status(200).json(u))
 		.catch(next);
 };
 

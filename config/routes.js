@@ -1,5 +1,5 @@
 const express = require('express');
-const fileUploader = require('../configs/cloudinary.config');
+const fileUploader = require('./cloudinary.config');
 const router = express.Router();
 
 const auth = require('../middlewares/auth.middleware');

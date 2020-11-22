@@ -40,7 +40,7 @@ const userSchema = new mongoose.Schema(
 			type: Number,
 			default: 0
 		},
-		img: {
+		avatar: {
 			type: String,
 			default: 'https://cdn4.iconfinder.com/data/icons/user-avatar-flat-icons/512/User_Avatar-31-512.png',
 		},

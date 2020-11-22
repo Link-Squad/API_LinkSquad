@@ -46,3 +46,26 @@ module.exports.returnRandomNumer = (min, max) => {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min);
 };
+
+module.exports.removeUndefinedProperties = (obj) => {
+		const entries = Object.entries(obj);
+
+		const definedEntries = entries.filter(e => {
+			const [key, value] = e;
+
+			if (value?.length === 0) {
+				return false
+			} else {
+				return value
+			}
+		})
+
+		const filteredObj = {}
+
+		definedEntries.forEach(e => {
+			const [key, value] = e;
+			filteredObj[key] = value
+		})
+
+		return filteredObj
+	}
