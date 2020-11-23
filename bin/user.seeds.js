@@ -23,7 +23,7 @@ const createUsers = (amount) => {
             password: faker.internet.password(),
 			bio: faker.lorem.sentence(),
 			languages: returnRandomElement(AVAILABLE_USER_LANGUAGES),
-            avatar: faker.internet.avatar(),
+            avatar: 'https://store.playstation.com/store/api/chihiro/037777777777_09_000/container/SA/en/99/EP3351-CUSA08250_00-AV00000000000121/image?_version=00_09_000&platform=chihiro&w=720&h=720&bg_color=000000&opacity=100',
             views: Math.floor(Math.random() * 9999999)
 		};
 		users.push(newUser);
