@@ -53,7 +53,7 @@ module.exports.removeUndefinedProperties = (obj) => {
 		const definedEntries = entries.filter(e => {
 			const [key, value] = e;
 
-			if (value?.length === 0) {
+			if (value && value.length === 0) {
 				return false
 			} else {
 				return value
