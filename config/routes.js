@@ -9,7 +9,8 @@ const friendshipsController = require('../controllers/friendships.controller');
 const offersController = require('../controllers/offers.controller');
 const usersGamesController = require('../controllers/userGame.controller')
 
-
+/* TEST */ 
+router.get('/test', (req, res, next) => res.send('API connection succesful')) 
 
 /* GAMES */
 router.get('/games', gamesController.getGames);
