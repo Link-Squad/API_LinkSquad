@@ -24,6 +24,7 @@ router.post('/login', auth.isNotAuthenticated, usersController.doLogin);
 
 
 router.get('/users', auth.isAuthenticated, usersController.listUsers);
+router.get('/test/users',  usersController.listUsers);
 router.post('/users', auth.isNotAuthenticated, usersController.createUser);
 router.patch('/users', auth.isAuthenticated, fileUploader.single('avatar'), usersController.updateUser);
 router.delete('/users', auth.isAuthenticated, usersController.deleteUser);
