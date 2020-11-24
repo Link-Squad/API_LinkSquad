@@ -13,6 +13,11 @@ const httpErrors = require('./middlewares/httpErrors.middleware');
 
 /* MIDDLEWARE */
 const app = express();
+
+if (app.get('env') === 'production') {
+  app.set('trust proxy', 1)
+}
+
 app.use(cors);
 app.use(logger('dev'));
 app.use(express.json());
