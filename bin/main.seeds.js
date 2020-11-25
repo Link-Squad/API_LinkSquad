@@ -1,6 +1,6 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-const DB_URI = process.env.DB_URI;
+const DB_URI = process.env.DB_URI || 'mongodb://127.0.0.1:27017';
 const seedUsers = require('./user.seeds');
 const seedGames = require('./game.seeds');
 const seedFriendships = require('./friendship.seeds');
