@@ -8,7 +8,7 @@ const session = expressSession({
 	resave: true,
 	cookie: {
 		secure: process.env.SESSION_SECURE,
-		sameSite: 'none',
+		sameSite: process.env.SESSION_SAMESITE || true,
 		httpOnly: true,
 		maxAge: Number(process.env.SESSION_MAX_AGE),
 	},
