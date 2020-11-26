@@ -6,9 +6,9 @@ const {
 
 const overwatch = {
   name: 'overwatch',
-  logo: './logos/overwatch.png',
-  icon: './icons/overwatch.png',
-  banner: './banners/overwatch.jpg',
+  logo: '/logos/overwatch.png',
+  icon: '/icons/overwatch.png',
+  banner: '/landscape/overwatch.jpg',
   description: 'Overwatch is a competitive 6 vs 6 first person shooter.',
   url: 'https://playoverwatch.com/',
   genre: 'FPS',
@@ -17,9 +17,9 @@ const overwatch = {
 
 const dota = {
   name: 'dota',
-  logo: './logos/dota.png',
-  icon: './icons/dota.png',
-  banner: './banners/dota.png',
+  logo: '/logos/dota.png',
+  icon: '/icons/dota.png',
+  banner: '/landscape/dota.png',
   description: 'Dota is a song by Swedish band Basshunter',
   url: 'http://dota2/play.com',
   genre: 'MOBA',
@@ -28,9 +28,9 @@ const dota = {
 
 const counter = {
   name: 'counterstrike',
-  logo: './logos/counter.png',
-  icon: './icons/counter.png',
-  banner: './banners/counter.jpg',
+  logo: '/logos/counter.png',
+  icon: '/icons/counter.png',
+  banner: '/landscape/counter.jpg',
   description: 'A popular game amongst slav teenagers',
   url: 'counterstrike',
   genre: 'FPS',
@@ -39,9 +39,9 @@ const counter = {
 
 const lol = {
   name: 'lol',
-  logo: './logos/lol.png',
-  icon: './icons/lol.png',
-  banner: './banners/lol.jpg',
+  logo: '/logos/lol.png',
+  icon: '/icons/lol.png',
+  banner: '/landscape/lol.jpg',
   description: 'Lots of Love <3',
   url: 'google.com',
   genre: 'MOBA',
@@ -50,9 +50,9 @@ const lol = {
 
 const fortnite = {
   name: 'fortnite',
-  logo: './logos/fortnite.png',
-  icon: './icons/fortnite.png',
-  banner: './banners/fortnite.jpeg',
+  logo: '/logos/fortnite.png',
+  icon: '/icons/fortnite.png',
+  banner: '/landscape/fortnite.jpeg',
   description: 'A time based construction simulator with skydiving',
   url: 'youtube.ru',
   genre: 'ACTION',
