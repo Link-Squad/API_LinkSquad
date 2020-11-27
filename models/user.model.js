@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema(
 			type: String,
 			required: [true, 'Username is required'],
 			unique: [true, 'This username is unavailable'],
+			maxlength: 12,
 			trim: true,
 		},
 		email: {

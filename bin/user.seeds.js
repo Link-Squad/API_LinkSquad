@@ -1,6 +1,6 @@
 const faker = require('faker');
 const avatar = require('../helpers/avatar.helper');
-const { returnRandomElement } = require('../helpers/helpers');
+const { returnRandomElement, sliceString } = require('../helpers/helpers');
 const User = require('../models/user.model');
 const {AVAILABLE_USER_LANGUAGES} = require('../constants/constants');
 
@@ -19,7 +19,7 @@ const createUsers = (amount) => {
 
 	for (let i = 0; i < amount; i++) {
 		const newUser = {
-			username: faker.internet.userName(),
+			username: sliceString(faker.internet.userName(), 12),
             email: faker.internet.email(),
             password: faker.internet.password(),
 			bio: faker.lorem.sentence(),

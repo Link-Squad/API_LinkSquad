@@ -84,7 +84,6 @@ module.exports.updateUser = (req, res, next) => {
 	const currentUser = req.session.user;
 	const { username, password, email, bio, languages } = req.body;
 	const avatar = req.file ? req.file.path : undefined;
-	console.log(req.file)
 
 	const userChanges = helpers.removeUndefinedProperties({
 		username,
@@ -103,7 +102,7 @@ module.exports.updateUser = (req, res, next) => {
 module.exports.deleteUser = (req, res, next) => {
 	const currentUser = req.session.user;
 
-	//delete user's friendships & userGames
+	//TODO: delete user's friendships & userGames
 	User.findByIdAndDelete(currentUser.id)
 		.then(() => {
 			res.send('user deleted');
