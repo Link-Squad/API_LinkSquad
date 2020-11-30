@@ -82,7 +82,7 @@ module.exports.listUsers = (req, res, next) => {
 
 module.exports.updateUser = (req, res, next) => {
 	const currentUser = req.session.user;
-	const { username, password, email, bio, languages } = req.body;
+	const { username, password, email, bio, languages, social } = req.body;
 	const avatar = req.file ? req.file.path : undefined;
 
 	const userChanges = helpers.removeUndefinedProperties({
@@ -91,7 +91,8 @@ module.exports.updateUser = (req, res, next) => {
 		email,
 		bio,
 		languages,
-		avatar,
+		social,
+		avatar
 	});
 
 	User.findByIdAndUpdate(currentUser.id, userChanges, { new: true })
