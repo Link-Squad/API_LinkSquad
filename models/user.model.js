@@ -55,7 +55,7 @@ const userSchema = new mongoose.Schema(
 				default: false,
 			},
 		},
-		//TODO: FIND OR CREATE REGEX FOR TWITCH & DISCORD 
+		
 		social: {
 			twitter: {
 				type: String,
@@ -107,6 +107,7 @@ userSchema.pre('save', function (next) {
     next();
   }
 });
+
 
 userSchema.methods.checkPassword = function (password) {
   return bcrypt.compare(password, this.password);

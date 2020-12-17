@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const LANGUAGES = require('../constants/constants').AVAILABLE_USER_LANGUAGES;
 
 const offerSchema = new mongoose.Schema({
     user: {
@@ -10,6 +11,14 @@ const offerSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
+    },
+    title: {
+        type: String,
+        required: true
+    },
+    languages: {
+        type: [String],
+        enum: LANGUAGES
     },
     role: {
         type: String,
