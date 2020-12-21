@@ -4,10 +4,10 @@ const helpers = require('../helpers/helpers');
 
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const YOUTUBE_PATTERN = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/g;
-const TWITTER_PATTERN = /^(http\:\/\/|https\:\/\/)?(?:www\.)?twitter\.com\/(?:#!\/)?@?([^\?#]*)(?:[?#].*)?$/i
+const TWITTER_PATTERN = /^(http\:\/\/|https\:\/\/)?(?:www\.)?twitter\.com\/(?:#!\/)?@?([^\?#]*)(?:[?#].*)?$/i;
 const DISCORD_PATTERN = null;
-const TWITCH_PATTERN = null
-const {AVAILABLE_USER_LANGUAGES} = require('../constants/constants');
+const TWITCH_PATTERN = null;
+const { AVAILABLE_USER_LANGUAGES } = require('../constants/constants');
 
 const userSchema = new mongoose.Schema(
 	{
@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema(
 		password: {
 			type: String,
 			required: [true, 'Password missing'],
-			trim: true
+			trim: true,
 		},
 		bio: {
 			type: String,
@@ -35,15 +35,16 @@ const userSchema = new mongoose.Schema(
 		},
 		languages: {
 			type: [String],
-			enum: AVAILABLE_USER_LANGUAGES
+			enum: AVAILABLE_USER_LANGUAGES,
 		},
 		views: {
 			type: Number,
-			default: 0
+			default: 0,
 		},
 		avatar: {
 			type: String,
-			default: 'https://cdn4.iconfinder.com/data/icons/user-avatar-flat-icons/512/User_Avatar-31-512.png',
+			default:
+				'https://cdn4.iconfinder.com/data/icons/user-avatar-flat-icons/512/User_Avatar-31-512.png',
 		},
 		status: {
 			token: {
@@ -55,27 +56,30 @@ const userSchema = new mongoose.Schema(
 				default: false,
 			},
 		},
-		
 		social: {
 			twitter: {
 				type: String,
 				default: null,
-				match: TWITTER_PATTERN
+				match: TWITTER_PATTERN,
 			},
 			twitch: {
 				type: String,
-				default: null
+				default: null,
 			},
 			youtube: {
 				type: String,
 				default: null,
-				match: YOUTUBE_PATTERN
+				match: YOUTUBE_PATTERN,
 			},
 			discord: {
 				type: String,
-				default: null
+				default: null,
 			},
 		},
+		views: {
+			type: Number,
+			default: 0
+		}
 	},
 	{
 		timestamps: true,
@@ -95,36 +99,35 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.pre('save', function (next) {
-  if (this.isModified('password')) {
-    bcrypt
-      .hash(this.password, 10)
-      .then((hash) => {
-        this.password = hash;
-        next();
-      })
-      .catch(next);
-  } else {
-    next();
-  }
+	if (this.isModified('password')) {
+		bcrypt
+			.hash(this.password, 10)
+			.then(hash => {
+				this.password = hash;
+				next();
+			})
+			.catch(next);
+	} else {
+		next();
+	}
 });
 
-
 userSchema.methods.checkPassword = function (password) {
-  return bcrypt.compare(password, this.password);
+	return bcrypt.compare(password, this.password);
 };
 
 userSchema.virtual('userGames', {
-  ref: 'UserGame',
-  localField: '_id',
-  foreignField: 'user',
-  justOne: false,
+	ref: 'UserGame',
+	localField: '_id',
+	foreignField: 'user',
+	justOne: false,
 });
 
 userSchema.virtual('friendship', {
-  ref: 'Friendship',
-  localField: '_id',
-  foreignField: 'users',
-  justOne: false,
+	ref: 'Friendship',
+	localField: '_id',
+	foreignField: 'users',
+	justOne: false,
 });
 
 const User = mongoose.model('User', userSchema);

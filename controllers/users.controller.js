@@ -92,7 +92,7 @@ module.exports.updateUser = (req, res, next) => {
 		bio,
 		languages,
 		social,
-		avatar
+		avatar,
 	});
 
 	User.findByIdAndUpdate(currentUser.id, userChanges, { new: true })
@@ -124,5 +124,23 @@ module.exports.findUsers = (req, res, next) => {
 		.then(results => {
 			res.json(results);
 		})
-		.catch(err => err);
+		.catch(next);
+};
+
+module.exports.addView = (req, res, next) => {
+	const { userId } = req.params;
+	console.log({userId})
+
+	User.findById(userId)
+		.then(u => {
+			if (!u) {
+				res.status(404).send('User not found');
+			}
+
+			++u.views;
+			u.save()
+				.then(updatedUser => res.json(updatedUser))
+				.catch(next)
+		})
+		.catch(next);
 };
