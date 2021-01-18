@@ -14,9 +14,9 @@ mongoose
     useCreateIndex: true
   })
   .then(() => {
-    console.log('Connection stablished at:  ' + DB_URI);
+    console.info('Connection stablished at:  ' + DB_URI);
     mongoose.connection.db.dropDatabase().then(() => {
-      console.log('Cleared database');
+      console.info('Cleared database');
       Promise.all([seedUsers(50), seedGames(0)]).then((models) => {
         const [users, games] = models;
 

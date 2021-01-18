@@ -129,7 +129,6 @@ module.exports.findUsers = (req, res, next) => {
 
 module.exports.addView = (req, res, next) => {
 	const { userId } = req.params;
-	console.log({userId})
 
 	User.findById(userId)
 		.then(u => {

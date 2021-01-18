@@ -42,5 +42,5 @@ app.use(httpErrors.errorHandler);
 /* Listen on provided port */
 const port = normalizePort(process.env.PORT);
 app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+  console.info(`Listening on port ${port}`);
 });
