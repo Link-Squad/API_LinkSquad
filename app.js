@@ -16,7 +16,9 @@ if (app.get('env') === 'production') {
   app.set('trust proxy', 1)
 }
 
+// CORS
 app.use(cors);
+app.options('*', cors())
 //app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
