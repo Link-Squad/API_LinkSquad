@@ -4,8 +4,6 @@ require('./config/db.config');
 const createError = require('http-errors');
 const express = require('express');
 const logger = require('morgan');
-const mongoose = require('mongoose');
-const passportConfig = require('./config/passport.config');
 const session = require('./config/session.config');
 const cors = require('./config/cors.config');
 const {normalizePort} = require('./helpers/helpers');
@@ -19,12 +17,10 @@ if (app.get('env') === 'production') {
 }
 
 app.use(cors);
-app.use(logger('dev'));
+//app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-//app.use(express.static(path.join(__dirname, 'public')));
 app.use(session);
-//app.use(passportConfig);
 
 
 /* ROUTES */
