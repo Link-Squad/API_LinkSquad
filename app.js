@@ -17,8 +17,8 @@ if (app.get('env') === 'production') {
 }
 
 // CORS
+app.options('*', cors)
 app.use(cors);
-app.options('*', cors())
 //app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -28,6 +28,7 @@ app.use(session);
 /* ROUTES */
 const router = require('./config/routes.js');
 app.use('/', router);
+app.get('/', (req, res) => res.send('hey'))
 
 /*ERRORS*/
 app.use(function (req, res, next) {
