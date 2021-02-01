@@ -17,7 +17,6 @@ if (app.get('env') === 'production') {
 }
 
 // CORS
-app.options('*', cors)
 app.use(cors);
 //app.use(logger('dev'));
 app.use(express.json());
