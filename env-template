@@ -1,0 +1,11 @@
+DB_URI=mongodb://localhost:27017
+
+# Cloudinary credentials
+CLOUD_KEY=
+CLOUD_SECRET=
+
+CORS_ORIGIN=
+SESSION_MAX_AGE=3600000000
+SESSION_SAMESITE=
+SESSION_SECRET=secretString
+SESSION_SECURE=false
